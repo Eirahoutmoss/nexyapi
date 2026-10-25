@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Yalnızca raporlar, hata kaydı, yazdırılacak referans etiketi ve kamera geçici dosyası paylaşılabilir.
+     Veritabanı ve ham ölçüm verisi paylaşılmaz. -->
+<paths>
+    <files-path name="reports" path="reports/" />
+    <files-path name="logs" path="logs/" />
+    <files-path name="labels" path="labels/" />
+    <cache-path name="capture" path="capture/" />
+</paths>

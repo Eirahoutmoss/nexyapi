@@ -1,0 +1,21 @@
+.gradle/
+build/
+local.properties
+.idea/
+*.iml
+.DS_Store
+captures/
+.cxx/
+keystore.properties
+*.jks
+*.keystore
+tools/license/private_key.pem
+.update/
+.kotlin/
+
+# Yerel derleme ve araç klasörleri
+**/build/
+.update/
+.kotlin/
+.gradle/
+local.properties
