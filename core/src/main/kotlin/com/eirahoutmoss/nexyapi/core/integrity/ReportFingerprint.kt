@@ -122,12 +122,17 @@ object ReportFingerprint {
             "device" to "cihaz", "subject" to "konu", "module" to "modül")
         for ((id, fa) in ma) {
             val fb = mb[id]
-            val name = "${fa["module"] ?: "?"} ölçümü (${id.take(8)})"
+            val title = fa["module"]?.let { com.eirahoutmoss.nexyapi.core.model.ModuleType.fromCode(it)?.title } ?: "Bir"
+            val name = "$title ölçümü (${fa["at"]?.toLongOrNull()?.let { formatTime(it) } ?: id.take(8)})"
             if (fb == null) { out += "$name silinmiş."; continue }
             for ((f, label) in fieldLabels) if (fa[f] != fb[f]) out += "$name: $label değişmiş."
         }
         return out
     }
+
+    private fun formatTime(ms: Long): String =
+        java.time.format.DateTimeFormatter.ofPattern("d.MM.yyyy HH:mm")
+            .format(java.time.Instant.ofEpochMilli(ms).atZone(java.time.ZoneId.systemDefault()))
 
     private fun unescape(v: String?): String =
         (v ?: "").replace("\\n", "\n").replace("\\r", "\r").replace("\\\\", "\\")

@@ -253,7 +253,7 @@ fun StructureDetailScreen(
                     } else {
                         scope.launch {
                             val extra = if (m.requiresAccessory) " Bu modül harici termal sensör gerektirir." else ""
-                            snackbar.showSnackbar("${m.code} · ${m.title} ölçümü sonraki aşamada eklenecek.$extra")
+                            snackbar.showSnackbar("${m.title} ölçümü sonraki aşamada eklenecek.$extra")
                         }
                     }
                 }

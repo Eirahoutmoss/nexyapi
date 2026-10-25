@@ -19,3 +19,6 @@ tools/license/private_key.pem
 .kotlin/
 .gradle/
 local.properties
+
+# Sürüm hazırlama çıktısı (APK + .sha256), GitHub Release olarak yüklenir, depoya girmez
+dist/

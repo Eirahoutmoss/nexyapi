@@ -62,7 +62,7 @@ class ReportDiffTest {
         val after = ReportFingerprint.canonical(s.copy(name = "Evim 2"), listOf(m1.copy(value = 2.5)), g)
         val d = ReportFingerprint.diff(before, after)
         org.junit.Assert.assertTrue(d.toString(), d.any { "Yapı adı" in it && "Evim 2" in it })
-        org.junit.Assert.assertTrue(d.toString(), d.any { "Z2" in it && "değer" in it })
-        org.junit.Assert.assertTrue(d.toString(), d.any { "V3" in it && "silinmiş" in it })
+        org.junit.Assert.assertTrue(d.toString(), d.any { "Titreşim" in it && "değer" in it })
+        org.junit.Assert.assertTrue(d.toString(), d.any { "Çatlak" in it && "silinmiş" in it })
     }
 }

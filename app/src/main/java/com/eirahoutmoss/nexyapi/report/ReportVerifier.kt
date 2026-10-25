@@ -2,6 +2,7 @@ package com.eirahoutmoss.nexyapi.report
 
 import com.eirahoutmoss.nexyapi.core.integrity.ReportFingerprint
 import com.eirahoutmoss.nexyapi.core.integrity.Sha256
+import com.eirahoutmoss.nexyapi.core.model.ModuleType
 import com.eirahoutmoss.nexyapi.data.AppDatabase
 import com.eirahoutmoss.nexyapi.data.ReportEntity
 import com.eirahoutmoss.nexyapi.data.StructureRepository
@@ -83,9 +84,15 @@ class ReportVerifier(private val db: AppDatabase, private val structures: Struct
             val rel = m.dataFile ?: continue
             val f = structures.resolve(rel)
             checked++
-            if (f == null || !f.exists()) { problems += "${m.moduleCode} (${m.id.take(8)}): ham veri dosyası yok."; continue }
-            if (RawDataWriter.sha256(f) != m.dataSha256) problems += "${m.moduleCode} (${m.id.take(8)}): ham veri dosyası değiştirilmiş."
+            if (f == null || !f.exists()) { problems += "${title(m.moduleCode)} (${formatShort(m.takenAt)}): ham veri dosyası yok."; continue }
+            if (RawDataWriter.sha256(f) != m.dataSha256) problems += "${title(m.moduleCode)} (${formatShort(m.takenAt)}): ham veri dosyası değiştirilmiş."
         }
         VerifyResult.Checked(report, structure.name, intact, changes, checked, problems)
     }
+
+    private fun title(code: String) = ModuleType.fromCode(code)?.title ?: "Ölçüm"
+
+    private fun formatShort(ms: Long): String =
+        java.time.format.DateTimeFormatter.ofPattern("d.MM.yyyy HH:mm")
+            .format(java.time.Instant.ofEpochMilli(ms).atZone(java.time.ZoneId.systemDefault()))
 }

@@ -380,7 +380,7 @@ class PdfReportGenerator {
                 val module = ModuleType.fromCode(code)
                 ensure(60f)
                 y += 18f
-                text(module?.let { "${it.code} · ${it.title}" } ?: code, margin, y, bodyBold)
+                text(module?.title ?: code, margin, y, bodyBold)
                 module?.limitationNote?.let { paragraph(it, small, lineGap = 1.3f) }
                 y += 6f
                 hr()

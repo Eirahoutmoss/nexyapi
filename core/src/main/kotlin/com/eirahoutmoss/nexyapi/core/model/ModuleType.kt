@@ -3,7 +3,8 @@ package com.eirahoutmoss.nexyapi.core.model
 /**
  * Yapı Karnesi'ndeki ölçüm modülleri.
  *
- * [code] veritabanına yazılır; bu yüzden bir kez yayımlandıktan sonra DEĞİŞTİRİLMEMELİDİR.
+ * [code] yalnızca iç kimliktir (veritabanına yazılır), kullanıcıya HİÇBİR yerde gösterilmez;
+ * bir kez yayımlandıktan sonra DEĞİŞTİRİLMEMELİDİR. Kullanıcı yalnızca [title] görür.
  * Yeni modül eklenebilir, var olanın kodu yeniden adlandırılamaz.
  */
 enum class ModuleType(
